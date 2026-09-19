@@ -4,7 +4,7 @@
  * Autores: David Alejandro Ramirez Bolaños, Steven Vélez Garces, Edwin Santiago Pelaez Osorio
  */
 
-const CACHE_NAME = 'fisica3-notebook-v4';
+const CACHE_NAME = 'fisica3-notebook-v6';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

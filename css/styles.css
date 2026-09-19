@@ -69,15 +69,16 @@
 
 html, body {
   width: 100%;
-  min-height: 100%;
-  min-height: 100dvh;
+  height: 100%;
+  height: 100dvh;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: var(--text-main);
   background-color: var(--bg-dark);
   background-image: 
     radial-gradient(circle at 15% 15%, rgba(30, 58, 138, 0.25) 0%, transparent 45%),
     radial-gradient(circle at 85% 85%, rgba(14, 165, 233, 0.18) 0%, transparent 45%);
-  overflow-x: hidden;
+  overflow: hidden; /* La pantalla del navegador NO se baja; el scroll ocurre dentro de cada página */
+  overscroll-behavior: none;
   user-select: text;
   -webkit-tap-highlight-color: transparent;
   -webkit-text-size-adjust: 100%;
@@ -88,13 +89,17 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
-  min-height: 100dvh;
-  padding: 10px 12px calc(24px + env(safe-area-inset-bottom)) 12px;
+  justify-content: space-between;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom)) 12px;
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  overflow: hidden; /* Evita que la pantalla completa se baje */
+  overscroll-behavior: none;
 }
 
 /* ==========================================================================
@@ -104,6 +109,7 @@ html, body {
 .top-header {
   width: 100%;
   max-width: 1440px;
+  flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -188,14 +194,17 @@ html, body {
   position: relative;
   width: 100%;
   max-width: 1440px;
-  min-height: var(--book-height);
-  height: auto; /* Permite desplazamiento natural y unificado */
+  flex: 1; /* Ocupa exactamente todo el espacio vertical disponible entre el header y el dock */
+  min-height: 0; /* Clave flexbox para que los hijos con scroll interno no desborden */
+  height: 100%;
+  max-height: 100%;
   display: flex;
   justify-content: center;
   align-items: stretch;
   perspective: 2000px;
   transform-style: preserve-3d;
   border-radius: 14px;
+  overflow: hidden;
 }
 
 /* Lomo central sutil cuando se muestran dos páginas */
@@ -230,8 +239,9 @@ html, body {
 .notebook-page {
   position: relative;
   width: 50%;
-  min-height: var(--book-height);
-  height: auto;
+  height: 100%;
+  max-height: 100%;
+  min-height: 0;
   background-color: #ffffff;
   
   /* LA IMAGEN SE DESPLAZA CON EL TEXTO Y SE EXPANDE NATURALMENTE */
@@ -243,14 +253,17 @@ html, body {
   
   /* APROVECHAMIENTO MÁXIMO DE LA ZONA BLANCA */
   padding-top: var(--white-zone-top);
-  padding-bottom: calc(var(--white-zone-bottom) + 34px);
+  padding-bottom: var(--white-zone-bottom);
   padding-left: var(--white-zone-left);
   padding-right: var(--white-zone-right);
   
   display: none;
   opacity: 0;
-  overflow-y: auto;
+  overflow-y: auto; /* CADA PÁGINA TIENE SU PROPIO SCROLL INTERNO */
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
   box-sizing: border-box;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   transition: opacity 0.25s ease, transform 0.25s ease;
@@ -301,6 +314,10 @@ html, body {
 .notebook-page:not(.page-left):not(.page-right) {
   width: 100%;
   max-width: 860px;
+  height: 100%;
+  max-height: 100%;
+  min-height: 0;
+  overflow-y: auto;
   border-radius: 14px !important;
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 12px 38px rgba(0, 0, 0, 0.45);
@@ -422,8 +439,10 @@ html, body {
    ========================================================================== */
 
 .notebook-page.page-cover {
-  width: auto;
+  width: 100%;
   max-width: 600px;
+  height: 100%;
+  max-height: 100%;
   margin: 0 auto;
   padding: 0 !important;
   background: transparent !important;
@@ -432,23 +451,28 @@ html, body {
   border-radius: 14px;
   box-shadow: none !important;
   display: none;
+  overflow-y: auto;
 }
 
 .notebook-page.page-cover.active {
   display: flex !important;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .cover-image-container {
   width: 100%;
-  max-width: 560px;
+  max-width: 520px;
+  max-height: calc(100% - 60px);
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.15);
   background: #0f172a;
   line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -458,10 +482,20 @@ html, body {
 }
 
 .cover-image {
-  width: 100%;
-  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 180px);
+  max-height: calc(100dvh - 180px);
+  object-fit: contain;
   display: block;
   border-radius: 14px;
+}
+
+.cover-bottom-bar {
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+  flex-shrink: 0;
 }
 
 .cover-bottom-bar {
@@ -550,21 +584,24 @@ html, body {
 
 /* Pie de Página Fijo en la Base de la Hoja (TRANSPARENTE SIN RECUADRO BLANCO) */
 .notebook-footer {
-  position: absolute;
-  bottom: max(14px, 2.2%);
-  left: var(--white-zone-left);
-  right: var(--white-zone-right);
+  position: relative;
+  margin-top: auto;
+  bottom: auto;
+  left: auto;
+  right: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid rgba(203, 213, 225, 0.5);
-  padding-top: 6px;
+  padding-top: 10px;
+  padding-bottom: 6px;
   font-size: 0.74rem;
   color: #64748b;
   background: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   box-shadow: none !important;
+  flex-shrink: 0;
   z-index: 15;
 }
 
@@ -582,8 +619,9 @@ html, body {
 
 .bottom-nav-dock {
   position: relative;
-  margin-top: 22px;
-  margin-bottom: 24px;
+  flex-shrink: 0;
+  margin-top: 8px;
+  margin-bottom: 0;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1366,11 +1404,14 @@ html, body {
 /* Tablets y Pantallas en Orientación Vertical (<960px o Portrait) */
 @media (max-width: 960px), (orientation: portrait) {
   .notebook-wrapper {
-    height: auto;
-    min-height: auto;
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+    max-height: 100%;
     flex-direction: column;
     align-items: center;
     perspective: none;
+    overflow: hidden;
   }
 
   .notebook-wrapper::before {
@@ -1380,10 +1421,13 @@ html, body {
   .notebook-page {
     width: 100% !important;
     max-width: 860px !important;
-    min-height: auto !important;
-    height: auto !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    touch-action: pan-y !important;
     border-radius: 14px !important;
-    margin-bottom: 18px;
+    margin-bottom: 0 !important;
     box-shadow: 0 10px 32px rgba(0, 0, 0, 0.4) !important;
     border-left: none !important;
     border-right: none !important;
@@ -1392,27 +1436,32 @@ html, body {
   .bottom-nav-dock {
     width: min(96vw, 680px);
     max-width: 96vw;
+    margin-top: 8px;
+    margin-bottom: 0;
   }
 }
 
 /* Pantallas Móviles Standard (<640px) */
 @media (max-width: 640px) {
   :root {
-    --white-zone-top: 20px;
-    --white-zone-bottom: 24px;
-    --white-zone-left: 14px;
-    --white-zone-right: 14px;
+    --white-zone-top: 16px;
+    --white-zone-bottom: 16px;
+    --white-zone-left: 12px;
+    --white-zone-right: 12px;
   }
 
   #app-container {
-    padding: 6px 8px calc(18px + env(safe-area-inset-bottom)) 8px;
+    padding: 4px 6px calc(6px + env(safe-area-inset-bottom)) 6px;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
   }
 
   /* Cabecera Móvil Compacta */
   .top-header {
-    padding: 6px 10px;
-    margin-bottom: 8px;
-    border-radius: 10px;
+    padding: 5px 8px;
+    margin-bottom: 6px;
+    border-radius: 8px;
   }
 
   .top-header .brand {
@@ -1452,18 +1501,24 @@ html, body {
   /* Hojas del Cuaderno Móvil */
   .notebook-page {
     width: 100% !important;
-    min-height: auto !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    touch-action: pan-y !important;
     padding-top: var(--white-zone-top);
-    padding-bottom: 48px;
+    padding-bottom: 16px;
     padding-left: var(--white-zone-left);
     padding-right: var(--white-zone-right);
-    border-radius: 12px !important;
+    border-radius: 10px !important;
   }
 
   .notebook-page.page-cover {
     width: 100%;
     max-width: 100%;
-    min-height: auto;
+    height: 100%;
+    max-height: 100%;
+    min-height: 0;
   }
 
   .cover-image-container {
@@ -1519,8 +1574,8 @@ html, body {
   .bottom-nav-dock {
     width: 96vw;
     max-width: 96vw;
-    margin-top: 14px;
-    margin-bottom: max(12px, env(safe-area-inset-bottom));
+    margin-top: 6px;
+    margin-bottom: 0;
     padding: 6px 10px;
     gap: 6px;
     box-sizing: border-box;

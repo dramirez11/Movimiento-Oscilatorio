@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
       wrapper?.classList.add('is-cover');
       const page1 = document.querySelector('.notebook-page[data-page="1"]');
       if (page1) {
+        page1.scrollTop = 0;
         page1.classList.add('active', isForward ? 'page-anim-single-forward' : 'page-anim-single-backward');
       }
 
@@ -128,10 +129,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const rightPage = document.querySelector(`.notebook-page[data-page="${rightPageNum}"]`);
 
       if (leftPage) {
+        leftPage.scrollTop = 0;
         leftPage.classList.add('active', 'page-left', animClass);
         onPageActivated(leftPageNum);
       }
       if (rightPage) {
+        rightPage.scrollTop = 0;
         rightPage.classList.add('active', 'page-right', animClass);
         onPageActivated(rightPageNum);
       }
@@ -163,6 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const target = document.querySelector(`.notebook-page[data-page="${pageNum}"]`);
     if (target) {
+      target.scrollTop = 0;
       target.classList.add('active', animClass);
       onPageActivated(pageNum);
     }
