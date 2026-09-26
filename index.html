@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Cuaderno Digital de Física III - Movimiento Oscilatorio y M.A.S.</title>
+  <meta name="description" content="Cuaderno digital científico interactivo de Física III: Movimiento Oscilatorio y Armónico Simple (UTP). Creado por David Alejandro Ramirez Bolaños, Steven Vélez Garces y Sergio Andrés Velásquez Arana.">
+  <meta name="author" content="David Alejandro Ramirez Bolaños, Steven Vélez Garces, Sergio Andrés Velásquez Arana">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- KaTeX CSS & JS para renderizado nítido de fórmulas LaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+  <!-- Nerdamer.js para Álgebra Simbólica -->
+  <script defer src="https://cdn.jsdelivr.net/npm/nerdamer@1.1.13/nerdamer.core.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/nerdamer@1.1.13/Algebra.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/nerdamer@1.1.13/Calculus.js"></script>
+
+  <!-- Estilos Maestros -->
+  <link rel="stylesheet" href="css/styles.css?v=11">
+  <link rel="manifest" href="manifest.json?v=11">
+</head>
+<body>
+
+<div id="app-container">
+  <!-- Barra Superior del Cuaderno -->
+  <header class="top-header">
+    <div class="brand">
+      <div class="brand-icon"><i class="fa-solid fa-atom"></i></div>
+      <div class="title-group">
+        <h1>FÍSICA III: ONDAS Y OSCILACIONES</h1>
+        <p>Cuaderno Científico • Modo Libro Abierto (Páginas Izquierda y Derecha)</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button id="btnToggleSpreadMode" class="btn-header" title="Alternar entre doble página y página simple">
+        <i class="fa-solid fa-book-open"></i> <span id="lblSpreadMode">Doble Página</span>
+      </button>
+      <button id="btnHeaderTOC" class="btn-header" title="Ir al Índice">
+        <i class="fa-solid fa-list-ul"></i> <span>Índice</span>
+      </button>
+      <button id="btnHeaderGeoGebra" class="btn-header" title="Ir al Plano GeoGebra">
+        <i class="fa-solid fa-chart-line"></i> <span>GeoGebra</span>
+      </button>
+      <button id="btnHeaderSim" class="btn-header" title="Ir al Laboratorio">
+        <i class="fa-solid fa-flask"></i> <span>Laboratorio</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Contenedor del Libro Digital (Doble Página: Izquierda y Derecha) -->
+  <main class="notebook-wrapper is-cover" id="notebookWrapper">
+
+    <!-- ====================================================================
+         PÁGINA 1: PORTADA OFICIAL (portada.webp)
+         ==================================================================== -->
+    <section class="notebook-page page-cover active" data-page="1">
+      <div class="cover-image-container">
+        <img src="imagenes/portada.webp" alt="Portada Oficial Física III - Universidad Tecnológica de Pereira" class="cover-image">
+      </div>
+      <div class="cover-bottom-bar">
+        <button id="btnOpenBook" class="btn-open-book">
+          <i class="fa-solid fa-book-open"></i> Abrir Cuaderno (Doble Página)
+        </button>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         PÁGINA 2: ÍNDICE GENERAL DE CONTENIDO (Página Izquierda)
+         ==================================================================== -->
+    <section class="notebook-page" data-page="2">
+      <div class="page-header">
+        <span class="page-header-topic">Estructura Curricular</span>
+        <span class="page-number-tag">Página 2</span>
+      </div>
+
+      <h2 class="page-title">Índice General de Contenidos</h2>
+      <p class="page-lead">Guía interactiva de aprendizaje. Selecciona cualquier sección para saltar directamente a ella.</p>
+
+      <!-- Cuadrícula Adaptativa para el Índice (12 Secciones: Páginas 3 a 14) -->
+      <div class="toc-grid">
+        <div class="toc-jump-btn" data-page="3" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:8px 10px; cursor:pointer; transition:var(--transition); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span style="font-size:0.7rem; color:#0284c7; font-weight:700;">PÁG. 3</span>
+            <h4 style="font-size:0.84rem; color:#0f172a;"><i class="fa-solid fa-diagram-project" style="color:#0ea5e9;"></i> Mapa Mental</h4>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color:#94a3b8; font-size:0.75rem;"></i>
+        </div>
+
+        <div class="toc-jump-btn" data-page="4" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:8px 10px; cursor:pointer; transition:var(--transition); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span style="font-size:0.7rem; color:#0284c7; font-weight:700;">PÁG. 4</span>
+            <h4 style="font-size:0.84rem; color:#0f172a;"><i class="fa-solid fa-timeline" style="color:#6366f1;"></i> Línea de Tiempo</h4>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color:#94a3b8; font-size:0.75rem;"></i>
+        </div>
+
+        <div class="toc-jump-btn" data-page="5" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:8px 10px; cursor:pointer; transition:var(--transition); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span style="font-size:0.7rem; color:#0284c7; font-weight:700;">PÁG. 5</span>
+            <h4 style="font-size:0.84rem; color:#0f172a;"><i class="fa-solid fa-book" style="color:#10b981;"></i> Conceptos y Unidades</h4>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color:#94a3b8; font-size:0.75rem;"></i>
+        </div>
+
+        <div class="toc-jump-btn" data-page="6" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:8px 10px; cursor:pointer; transition:var(--transition); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span style="font-size:0.7rem; color:#0284c7; font-weight:700;">PÁG. 6</span>
+            <h4 style="font-size:0.84rem; color:#0f172a;"><i class="fa-solid fa-square-root-variable" style="color:#f59e0b;"></i> Demostraciones</h4>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color:#94a3b8; font-size:0.75rem;"></i>
+        </div>
+
+        <div class="toc-jump-btn" data-page="7" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:8px 10px; cursor:pointer; transition:var(--transition); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span style="font-size:0.7rem; color:#0284c7; font-weight:700;">PÁG. 7</span>
+            <h4 style="font-size:0.84rem; color:#0f172a;"><i class="fa-solid fa-chart-line" style="color:#0284c7;"></i> Plano GeoGebra</h4>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color:#94a3b8; font-size:0.75rem;"></i>
+        </div>
+
+        <div class="toc-jump-btn" data-page="8" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:8px 10px; cursor:pointer; transition:var(--transition); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span style="font-size:0.7rem; color:#0284c7; font-weight:700;">PÁG. 8</span>
+            <h4 style="font-size:0.84rem; color:#0f172a;"><i class="fa-solid fa-flask" style="color:#ec4899;"></i> Oscilador Masa-Resorte</h4>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color:#94a3b8; font-size:0.75rem;"></i>
+        </div>
+
+        <div class="toc-jump-btn" data-page="9" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:8px 10px; cursor:pointer; transition:var(--transition); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span style="font-size:0.7rem; color:#0284c7; font-weight:700;">PÁG. 9</span>
+            <h4 style="font-size:0.84rem; color:#0f172a;"><i class="fa-solid fa-circle-notch" style="color:#6366f1;"></i> Fasor Rotatorio</h4>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color:#94a3b8; font-size:0.75rem;"></i>
+        </div>
+
+        <div class="toc-jump-btn" data-page="10" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:8px 10px; cursor:pointer; transition:var(--transition); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span style="font-size:0.7rem; color:#0284c7; font-weight:700;">PÁG. 10</span>
+            <h4 style="font-size:0.84rem; color:#0f172a;"><i class="fa-solid fa-pen-ruler" style="color:#8b5cf6;"></i> Problemas (5 Fases)</h4>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color:#94a3b8; font-size:0.75rem;"></i>
+        </div>
+
+        <div class="toc-jump-btn" data-page="11" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:8px 10px; cursor:pointer; transition:var(--transition); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span style="font-size:0.7rem; color:#0284c7; font-weight:700;">PÁG. 11</span>
+            <h4 style="font-size:0.84rem; color:#0f172a;"><i class="fa-solid fa-calculator" style="color:#14b8a6;"></i> Taller Interactivo</h4>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color:#94a3b8; font-size:0.75rem;"></i>
+        </div>
+
+        <div class="toc-jump-btn" data-page="12" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:8px 10px; cursor:pointer; transition:var(--transition); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span style="font-size:0.7rem; color:#0284c7; font-weight:700;">PÁG. 12</span>
+            <h4 style="font-size:0.84rem; color:#0f172a;"><i class="fa-solid fa-spell-check" style="color:#f97316;"></i> Glosario Científico</h4>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color:#94a3b8; font-size:0.75rem;"></i>
+        </div>
+
+        <div class="toc-jump-btn" data-page="13" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:8px 10px; cursor:pointer; transition:var(--transition); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span style="font-size:0.7rem; color:#0284c7; font-weight:700;">PÁG. 13</span>
+            <h4 style="font-size:0.84rem; color:#0f172a;"><i class="fa-solid fa-graduation-cap" style="color:#3b82f6;"></i> Referencias APA 7</h4>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color:#94a3b8; font-size:0.75rem;"></i>
+        </div>
+
+        <div class="toc-jump-btn" data-page="14" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:8px 10px; cursor:pointer; transition:var(--transition); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span style="font-size:0.7rem; color:#0284c7; font-weight:700;">PÁG. 14</span>
+            <h4 style="font-size:0.84rem; color:#0f172a;"><i class="fa-solid fa-award" style="color:#eab308;"></i> Contraportada y Créditos</h4>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color:#94a3b8; font-size:0.75rem;"></i>
+        </div>
+      </div>
+
+      <footer class="notebook-footer">
+        <span>Física III • UTP</span>
+        <span class="footer-author-text"><i class="fa-solid fa-feather"></i> Realizado por: David Ramirez, Steven Vélez, Sergio Velásquez</span>
+      </footer>
+    </section>
+
+    <!-- ====================================================================
+         PÁGINA 3: MAPA MENTAL CONCEPTUAL (Página Derecha)
+         ==================================================================== -->
+    <section class="notebook-page" data-page="3">
+      <div class="page-header">
+        <span class="page-header-topic">Organización Conceptual</span>
+        <span class="page-number-tag">Página 3</span>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+        <p class="page-lead" style="margin-bottom:0;">Taxonomía del M.A.S.: cinemática, dinámica, leyes de conservación y unidades del SI.</p>
+        <button id="btnOpenMindmapModal" class="btn-open-modal-card" title="Ampliar Mapa Mental en Ventana Modal Grande">
+          <i class="fa-solid fa-up-right-and-down-left-from-center"></i> <span>Ampliar en Modal</span>
+        </button>
+      </div>
+
+      <div class="mindmap-wrapper" id="mindmapContainer">
+        <!-- SVG Inyectado dinámicamente por js/mindmap.js -->
+      </div>
+
+      <div style="margin-top: 10px; font-size: 0.78rem; color: #475569; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 10px;">
+        <i class="fa-solid fa-circle-info" style="color:#0284c7;"></i> <strong>Interacción:</strong> Haz zoom (+ / -) y arrastra el mapa para explorar las ramas teóricas y sus ecuaciones canónicas.
+      </div>
+
+      <footer class="notebook-footer">
+        <span>Física III • UTP</span>
+        <span class="footer-author-text"><i class="fa-solid fa-feather"></i> Realizado por: David Ramirez, Steven Vélez, Sergio Velásquez</span>
+      </footer>
+    </section>
+
+    <!-- ====================================================================
+         PÁGINA 4: LÍNEA DE TIEMPO Y RESEÑA HISTÓRICA (Página Izquierda)
+         ==================================================================== -->
+    <section class="notebook-page" data-page="4">
+      <div class="page-header">
+        <span class="page-header-topic">Contexto Histórico & Epistemología</span>
+        <span class="page-number-tag">Página 4</span>
+      </div>
+
+      <h2 class="page-title">Evolución Histórica de las Oscilaciones</h2>
+      <p class="page-lead">Desde las observaciones en Pisa hasta el descubrimiento de las ondas electromagnéticas por Heinrich Hertz.</p>
+
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <!-- 1. Galileo Galilei -->
+        <div class="timeline-item">
+          <div class="timeline-badge"><i class="fa-solid fa-hourglass-start"></i></div>
+          <div class="timeline-card timeline-card-featured">
+            <span class="timeline-year"><i class="fa-solid fa-calendar-check"></i> 1581 • Pisa, Italia</span>
+            <h3 class="timeline-scientist">Galileo Galilei (Isocronismo del Péndulo)</h3>
+            <p class="timeline-desc">Observó las oscilaciones de una lámpara en la Catedral de Pisa y descubrió experimentalmente que, para pequeñas oscilaciones, el periodo depende únicamente de la longitud del hilo ($T \propto \sqrt{L}$) e independientemente de la masa o amplitud.</p>
+            
+            <div class="timeline-gallery-grid">
+              <div class="timeline-gallery-card" onclick="openHistoricalModal('galileo_retrato')" title="Clic para ampliar retrato">
+                <img src="imagenes/galileo_retrato.jpg" alt="Retrato de Galileo Galilei" class="timeline-gallery-img" loading="lazy">
+                <div class="timeline-gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="timeline-gallery-caption">
+                  <span class="gallery-tag gallery-tag-person"><i class="fa-solid fa-user"></i> Retrato</span>
+                  <span class="gallery-name">Galileo Galilei (1564–1642)</span>
+                </div>
+              </div>
+              <div class="timeline-gallery-card" onclick="openHistoricalModal('galileo_invento')" title="Clic para ampliar invento">
+                <img src="imagenes/galileo_invento.jpg" alt="Péndulo y Pulsilogio de Galileo" class="timeline-gallery-img" loading="lazy">
+                <div class="timeline-gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="timeline-gallery-caption">
+                  <span class="gallery-tag gallery-tag-invento"><i class="fa-solid fa-lightbulb"></i> Invención</span>
+                  <span class="gallery-name">Péndulo Isócrono y Pulsilogio</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Christiaan Huygens -->
+        <div class="timeline-item">
+          <div class="timeline-badge"><i class="fa-solid fa-clock"></i></div>
+          <div class="timeline-card timeline-card-featured">
+            <span class="timeline-year"><i class="fa-solid fa-calendar-check"></i> 1656 • La Haya, Países Bajos</span>
+            <h3 class="timeline-scientist">Christiaan Huygens (El Reloj de Péndulo Cicloidal)</h3>
+            <p class="timeline-desc">Patentó en 1656 el primer reloj de péndulo mecánico del mundo. En su obra maestra <em>Horologium Oscillatorium</em> (1673), demostró que la cicloide es verdaderamente tautócrona y dedujo la ecuación analítica exacta del periodo: $T = 2\pi\sqrt{L/g}$.</p>
+            
+            <div class="timeline-gallery-grid">
+              <div class="timeline-gallery-card" onclick="openHistoricalModal('huygens_retrato')" title="Clic para ampliar retrato">
+                <img src="imagenes/huygens_retrato.jpg" alt="Retrato de Christiaan Huygens" class="timeline-gallery-img" loading="lazy">
+                <div class="timeline-gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="timeline-gallery-caption">
+                  <span class="gallery-tag gallery-tag-person"><i class="fa-solid fa-user"></i> Retrato</span>
+                  <span class="gallery-name">Christiaan Huygens (1629–1695)</span>
+                </div>
+              </div>
+              <div class="timeline-gallery-card" onclick="openHistoricalModal('huygens_invento')" title="Clic para ampliar invento">
+                <img src="imagenes/huygens_invento.jpg" alt="Reloj Horologium Oscillatorium" class="timeline-gallery-img" loading="lazy">
+                <div class="timeline-gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="timeline-gallery-caption">
+                  <span class="gallery-tag gallery-tag-invento"><i class="fa-solid fa-lightbulb"></i> Invención</span>
+                  <span class="gallery-name">Horologium Oscillatorium (1656)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Robert Hooke -->
+        <div class="timeline-item">
+          <div class="timeline-badge"><i class="fa-solid fa-compress"></i></div>
+          <div class="timeline-card timeline-card-featured">
+            <span class="timeline-year"><i class="fa-solid fa-calendar-check"></i> 1678 • Londres, Inglaterra</span>
+            <h3 class="timeline-scientist">Robert Hooke (Ley de Elasticidad)</h3>
+            <p class="timeline-desc">Formuló el principio <em>"Ut tensio, sic vis"</em>: la fuerza restauradora elástica es directamente proporcional y opuesta a la deformación ($F_e = -k x$). Creó el resorte espiral regulador y cimentó las bases dinámicas del oscilador armónico simple masa-resorte.</p>
+            
+            <div class="timeline-gallery-grid">
+              <div class="timeline-gallery-card" onclick="openHistoricalModal('hooke_retrato')" title="Clic para ampliar retrato">
+                <img src="imagenes/hooke_retrato.jpg" alt="Retrato de Robert Hooke" class="timeline-gallery-img" loading="lazy">
+                <div class="timeline-gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="timeline-gallery-caption">
+                  <span class="gallery-tag gallery-tag-person"><i class="fa-solid fa-user"></i> Retrato</span>
+                  <span class="gallery-name">Robert Hooke (1635–1703)</span>
+                </div>
+              </div>
+              <div class="timeline-gallery-card" onclick="openHistoricalModal('hooke_invento')" title="Clic para ampliar invento">
+                <img src="imagenes/hooke_invento.jpg" alt="Resorte Espiral y Balanza Elástica" class="timeline-gallery-img" loading="lazy">
+                <div class="timeline-gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="timeline-gallery-caption">
+                  <span class="gallery-tag gallery-tag-invento"><i class="fa-solid fa-lightbulb"></i> Invención</span>
+                  <span class="gallery-name">Resorte Espiral y Balanza (1678)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Isaac Newton -->
+        <div class="timeline-item">
+          <div class="timeline-badge"><i class="fa-solid fa-apple-whole"></i></div>
+          <div class="timeline-card timeline-card-featured">
+            <span class="timeline-year"><i class="fa-solid fa-calendar-check"></i> 1687 • Cambridge, Inglaterra</span>
+            <h3 class="timeline-scientist">Isaac Newton (Principios Dinámicos del M.A.S.)</h3>
+            <p class="timeline-desc">En los <em>Principia</em> unificó la cinemática con su Segunda Ley ($\Sigma \vec{F} = m \vec{a}$). Al combinarla con la fuerza elástica de Hooke, estableció la ecuación diferencial fundamental que rige todo movimiento oscilatorio: $m\frac{d^2x}{dt^2} + kx = 0$.</p>
+            
+            <div class="timeline-gallery-grid">
+              <div class="timeline-gallery-card" onclick="openHistoricalModal('newton_retrato')" title="Clic para ampliar retrato">
+                <img src="imagenes/newton_retrato.jpg" alt="Retrato de Sir Isaac Newton" class="timeline-gallery-img" loading="lazy">
+                <div class="timeline-gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="timeline-gallery-caption">
+                  <span class="gallery-tag gallery-tag-person"><i class="fa-solid fa-user"></i> Retrato</span>
+                  <span class="gallery-name">Isaac Newton (1642–1727)</span>
+                </div>
+              </div>
+              <div class="timeline-gallery-card" onclick="openHistoricalModal('newton_invento')" title="Clic para ampliar invento">
+                <img src="imagenes/newton_invento.jpg" alt="Telescopio Reflector y Péndulos Armónicos" class="timeline-gallery-img" loading="lazy">
+                <div class="timeline-gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="timeline-gallery-caption">
+                  <span class="gallery-tag gallery-tag-invento"><i class="fa-solid fa-lightbulb"></i> Invención</span>
+                  <span class="gallery-name">Telescopio (1668) y Péndulos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Leonhard Euler -->
+        <div class="timeline-item">
+          <div class="timeline-badge"><i class="fa-solid fa-infinity"></i></div>
+          <div class="timeline-card timeline-card-featured">
+            <span class="timeline-year"><i class="fa-solid fa-calendar-check"></i> 1739 • San Petersburgo, Rusia</span>
+            <h3 class="timeline-scientist">Leonhard Euler (Solución Analítica y Fasores)</h3>
+            <p class="timeline-desc">Resolvió de forma analítica rigurosa la ecuación armónica lineal mediante funciones trigonométricas y su célebre fórmula $e^{i\theta} = \cos\theta + i\sin\theta$, introduciendo la frecuencia angular natural $\omega = \sqrt{k/m}$ y sentando el análisis fasorial moderno.</p>
+            
+            <div class="timeline-gallery-grid">
+              <div class="timeline-gallery-card" onclick="openHistoricalModal('euler_retrato')" title="Clic para ampliar retrato">
+                <img src="imagenes/euler_retrato.jpg" alt="Retrato de Leonhard Euler" class="timeline-gallery-img" loading="lazy">
+                <div class="timeline-gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="timeline-gallery-caption">
+                  <span class="gallery-tag gallery-tag-person"><i class="fa-solid fa-user"></i> Retrato</span>
+                  <span class="gallery-name">Leonhard Euler (1707–1783)</span>
+                </div>
+              </div>
+              <div class="timeline-gallery-card" onclick="openHistoricalModal('euler_invento')" title="Clic para ampliar invento">
+                <img src="imagenes/euler_invento.jpg" alt="Disco Oscilante y Diagrama de Fasores" class="timeline-gallery-img" loading="lazy">
+                <div class="timeline-gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="timeline-gallery-caption">
+                  <span class="gallery-tag gallery-tag-invento"><i class="fa-solid fa-lightbulb"></i> Invención</span>
+                  <span class="gallery-name">Disco Oscilante y Fasores</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Heinrich Rudolf Hertz -->
+        <div class="timeline-item">
+          <div class="timeline-badge"><i class="fa-solid fa-tower-broadcast"></i></div>
+          <div class="timeline-card timeline-card-featured">
+            <span class="timeline-year"><i class="fa-solid fa-calendar-check"></i> 1887 • Karlsruhe / Bonn, Alemania</span>
+            <h3 class="timeline-scientist">Heinrich Rudolf Hertz (Ondas Electromagnéticas y Resonancia)</h3>
+            <p class="timeline-desc">Demostró experimentalmente que las ondas electromagnéticas son oscilaciones periódicas transversales que viajan a la velocidad de la luz, verificando las ecuaciones de Maxwell. Construyó el primer oscilador dipolar de chispa y el resonador de bucle receptor. En su honor, la unidad de frecuencia del SI es el <strong>Hertz ($\text{Hz} = 1/\text{s}$)</strong>.</p>
+            
+            <div class="timeline-gallery-grid">
+              <div class="timeline-gallery-card" onclick="openHistoricalModal('hertz_retrato')" title="Clic para ampliar retrato">
+                <img src="imagenes/hertz_retrato.jpg" alt="Retrato de Heinrich Rudolf Hertz" class="timeline-gallery-img" loading="lazy">
+                <div class="timeline-gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="timeline-gallery-caption">
+                  <span class="gallery-tag gallery-tag-person"><i class="fa-solid fa-user"></i> Retrato</span>
+                  <span class="gallery-name">Heinrich Hertz (1857–1894)</span>
+                </div>
+              </div>
+              <div class="timeline-gallery-card" onclick="openHistoricalModal('hertz_invento')" title="Clic para ampliar invento">
+                <img src="imagenes/hertz_invento.jpg" alt="Oscilador y Resonador Dipolar de Hertz" class="timeline-gallery-img" loading="lazy">
+                <div class="timeline-gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="timeline-gallery-caption">
+                  <span class="gallery-tag gallery-tag-invento"><i class="fa-solid fa-lightbulb"></i> Invención</span>
+                  <span class="gallery-name">Oscilador y Resonador (1887)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <footer class="notebook-footer">
+        <span>Física III • UTP</span>
+        <span class="footer-author-text"><i class="fa-solid fa-feather"></i> Realizado por: David Ramirez, Steven Vélez, Sergio Velásquez</span>
+      </footer>
+    </section>
+
+    <!-- ====================================================================
+         PÁGINA 5: FUNDAMENTOS TEÓRICOS Y UNIDADES SI (Página Derecha)
+         ==================================================================== -->
+    <section class="notebook-page" data-page="5">
+      <div class="page-header">
+        <span class="page-header-topic">Capítulo I • Definiciones Fundamentales</span>
+        <span class="page-number-tag">Página 5</span>
+      </div>
+
+      <h2 class="page-title">Conceptos del Movimiento Oscilatorio</h2>
+      <p class="page-lead">Propiedades cinemáticas y dinámicas en torno a posiciones de equilibrio estable.</p>
+
+      <!-- 2 Cajas Adaptativas -->
+      <div class="concepts-grid">
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px;">
+          <h3 style="color:#1e3a8a; font-size:0.88rem; margin-bottom:4px;"><i class="fa-solid fa-repeat" style="color:#0ea5e9;"></i> Movimiento Periódico</h3>
+          <p style="font-size:0.8rem; color:#475569; line-height:1.45;">
+            Cumple $\vec{r}(t + T) = \vec{r}(t)$. El ciclo se repite idénticamente en intervalos sucesivos e iguales de tiempo $T$.
+          </p>
+        </div>
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px;">
+          <h3 style="color:#1e3a8a; font-size:0.88rem; margin-bottom:4px;"><i class="fa-solid fa-arrows-left-right" style="color:#6366f1;"></i> Movimiento Oscilatorio</h3>
+          <p style="font-size:0.8rem; color:#475569; line-height:1.45;">
+            Movimiento alternativo de vaivén sobre una trayectoria fija en torno a una posición de equilibrio estable ($\Sigma F = 0$).
+          </p>
+        </div>
+      </div>
+
+      <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-bottom: 10px;">
+        <h3 style="color:#0f172a; font-size:0.88rem; margin-bottom:4px;"><i class="fa-solid fa-list-check" style="color:#0284c7;"></i> Parámetros Primordiales</h3>
+        <ul class="units-grid" style="list-style: none; padding: 0; line-height: 1.5; font-size: 0.8rem; color: #334155;">
+          <li><strong>• Elongación ($x$):</strong> Posición en el instante $t$.</li>
+          <li><strong>• Amplitud ($A$):</strong> Desplazamiento máximo ($A > 0$).</li>
+          <li><strong>• Periodo ($T$):</strong> Tiempo por ciclo ($T = 1/f$).</li>
+          <li><strong>• Frecuencia ($f$):</strong> Ciclos por segundo en Hertz ($\text{Hz}$).</li>
+          <li><strong>• Frecuencia Angular ($\omega$):</strong> $\omega = 2\pi f = \sqrt{k/m}$.</li>
+          <li><strong>• Fase ($\omega t + \phi$):</strong> Estado cinemático en tiempo $t$.</li>
+        </ul>
+      </div>
+
+      <h3 style="font-size: 0.88rem; font-weight: 700; color: #0f172a; margin-top: 6px;">
+        Tabla 1: Magnitudes Físicas y Unidades en el SI
+      </h3>
+      <table class="scientific-table">
+        <thead>
+          <tr>
+            <th>Magnitud</th>
+            <th>Símbolo</th>
+            <th>Definición</th>
+            <th>Unidad SI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Elongación</td><td>$x$</td><td>$x(t) = A\cos(\omega t + \phi)$</td><td>Metro ($\text{m}$)</td></tr>
+          <tr><td>Amplitud</td><td>$A$</td><td>$A = |x_{\max}|$</td><td>Metro ($\text{m}$)</td></tr>
+          <tr><td>Periodo</td><td>$T$</td><td>$T = 2\pi/\omega$</td><td>Segundo ($\text{s}$)</td></tr>
+          <tr><td>Frecuencia</td><td>$f$</td><td>$f = 1/T$</td><td>Hertz ($\text{Hz}$)</td></tr>
+          <tr><td>Frecuencia Angular</td><td>$\omega$</td><td>$\omega = \sqrt{k/m}$</td><td>$\text{rad/s}$</td></tr>
+          <tr><td>Constante Elástica</td><td>$k$</td><td>$k = -F/x$</td><td>$\text{N/m}$</td></tr>
+          <tr><td>Energía Mecánica</td><td>$E_m$</td><td>$E_m = \frac{1}{2}kA^2$</td><td>Joule ($\text{J}$)</td></tr>
+        </tbody>
+      </table>
+
+      <footer class="notebook-footer">
+        <span>Física III • UTP</span>
+        <span class="footer-author-text"><i class="fa-solid fa-feather"></i> Realizado por: David Ramirez, Steven Vélez, Sergio Velásquez</span>
+      </footer>
+    </section>
+
+    <!-- ====================================================================
+         PÁGINA 6: DEMOSTRACIONES MATEMÁTICAS COMPLETAS (Página Izquierda)
+         ==================================================================== -->
+    <section class="notebook-page" data-page="6">
+      <div class="page-header">
+        <span class="page-header-topic">Capítulo II • Formalismo Matemático</span>
+        <span class="page-number-tag">Página 6</span>
+      </div>
+
+      <h2 class="page-title">Demostraciones Analíticas del M.A.S.</h2>
+      <p class="page-lead">Deducción paso a paso desde los axiomas de la mecánica clásica.</p>
+
+      <div class="derivation-box">
+        <div class="derivation-step">
+          <h4>1. Ecuación Diferencial Canónica</h4>
+          <p style="font-size:0.82rem; color:#334155; line-height:1.45;">
+            Por Hooke ($F_x = -kx$) y la Segunda Ley de Newton ($F_x = m \frac{d^2x}{dt^2}$):
+          </p>
+          <div class="equation-block">
+            $$ -kx = m \frac{d^2x}{dt^2} \implies \frac{d^2x}{dt^2} + \frac{k}{m}x = 0 $$
+          </div>
+          <div class="equation-block" style="border: 2px solid #3b82f6; background: #eff6ff;">
+            $$ \ddot{x} + \omega^2 x = 0 \quad \text{con } \omega = \sqrt{\frac{k}{m}} $$
+            <span class="equation-number">(Ecuación 1)</span>
+          </div>
+        </div>
+
+        <div class="derivation-step" style="border-left-color: #0ea5e9;">
+          <h4>2. Solución General mediante Polinomio Característico</h4>
+          <p style="font-size:0.82rem; color:#334155; line-height:1.45;">
+            Planteando $x(t) = e^{rt} \implies r^2 + \omega^2 = 0 \implies r = \pm i\omega$. Aplicando la fórmula de Euler:
+          </p>
+          <div class="equation-block" style="border: 2px solid #0284c7; background: #f0f9ff;">
+            $$ x(t) = A \cos(\omega t + \phi) $$
+            <span class="equation-number">(Ecuación 2)</span>
+          </div>
+        </div>
+
+        <div class="derivation-step" style="border-left-color: #10b981;">
+          <h4>3. Deducción de la Velocidad Instantánea $v(t)$</h4>
+          <div class="equation-block" style="border: 2px solid #10b981; background: #f0fdf4;">
+            $$ v(t) = \frac{dx}{dt} = -\omega A \sin(\omega t + \phi) \implies v_{\max} = \omega A $$
+            <span class="equation-number">(Ecuación 3)</span>
+          </div>
+          <p style="font-size:0.78rem; color:#065f46;">
+            La velocidad se adelanta en fase en $\pi/2 \text{ rad} = 90^\circ$ respecto a la posición.
+          </p>
+        </div>
+
+        <div class="derivation-step" style="border-left-color: #f59e0b;">
+          <h4>4. Deducción de la Aceleración Instantánea $a(t)$</h4>
+          <div class="equation-block" style="border: 2px solid #f59e0b; background: #fffbeb;">
+            $$ a(t) = \frac{dv}{dt} = -\omega^2 A \cos(\omega t + \phi) = -\omega^2 x(t) \implies a_{\max} = \omega^2 A $$
+            <span class="equation-number">(Ecuación 4)</span>
+          </div>
+          <p style="font-size:0.78rem; color:#92400e;">
+            La aceleración está en contrafase ($\Delta\phi = \pi \text{ rad} = 180^\circ$) respecto a la elongación.
+          </p>
+        </div>
+      </div>
+
+      <footer class="notebook-footer">
+        <span>Física III • UTP</span>
+        <span class="footer-author-text"><i class="fa-solid fa-feather"></i> Realizado por: David Ramirez, Steven Vélez, Sergio Velásquez</span>
+      </footer>
+    </section>
+
+    <!-- ====================================================================
+         PÁGINA 7: PLANO CARTESIANO INTERACTIVO ESTILO GEOGEBRA (Página Derecha)
+         ==================================================================== -->
+    <section class="notebook-page" data-page="7">
+      <div class="page-header">
+        <span class="page-header-topic">Laboratorio Gráfico • Precisión</span>
+        <span class="page-number-tag">Página 7</span>
+      </div>
+
+      <h2 class="page-title">Plano Cartesiano Estilo "GeoGebra"</h2>
+      <p class="page-lead">Cuadrícula milimetrada, marcas de regla, zoom, arrastre continuo, reescalado manual de ejes y paleta gráfica.</p>
+
+      <div class="geogebra-container">
+        <div class="geogebra-toolbar">
+          <div class="ggb-toolgroup">
+            <button id="ggbToolPan" class="ggb-btn ggb-btn-tool active" title="Arrastrar Lienzo (Mover)"><i class="fa-solid fa-hand"></i></button>
+            <button id="ggbToolSelect" class="ggb-btn ggb-btn-tool" title="Inspeccionar Coordenadas"><i class="fa-solid fa-arrow-pointer"></i></button>
+            <button id="ggbZoomIn" class="ggb-btn" title="Zoom In"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+            <button id="ggbZoomOut" class="ggb-btn" title="Zoom Out"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+            <button id="ggbResetView" class="ggb-btn" title="Restablecer Vista"><i class="fa-solid fa-house"></i></button>
+          </div>
+
+          <div class="ggb-toolgroup" style="gap: 8px; font-size: 0.74rem; font-weight: 600;">
+            <label style="display:flex; align-items:center; gap:3px; color:#0284c7; cursor:pointer;"><input type="checkbox" id="chkCurveX" checked> x(t)</label>
+            <label style="display:flex; align-items:center; gap:3px; color:#10b981; cursor:pointer;"><input type="checkbox" id="chkCurveV" checked> v(t)</label>
+            <label style="display:flex; align-items:center; gap:3px; color:#f59e0b; cursor:pointer;"><input type="checkbox" id="chkCurveA" checked> a(t)</label>
+          </div>
+
+          <div class="ggb-toolgroup">
+            <button id="ggbBtnPalette" class="ggb-btn" title="Paleta de Estilos"><i class="fa-solid fa-palette" style="color:#2563eb;"></i></button>
+            <button id="btnOpenGgbModal" class="btn-open-modal-card" title="Ampliar Plano Cartesiano en Ventana Modal Grande">
+              <i class="fa-solid fa-up-right-and-down-left-from-center"></i> <span>Ampliar en Modal</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="geogebra-canvas-wrapper">
+          <canvas id="ggbCanvas"></canvas>
+          <div id="ggbCoordsBadge" class="ggb-coords-badge">t: 0.00s | f(t): 0.00</div>
+
+          <div id="ggbPaletteModal" class="ggb-palette-modal">
+            <div class="ggb-palette-header">
+              <span><i class="fa-solid fa-paintbrush"></i> Paleta de Estilos</span>
+              <button onclick="document.getElementById('ggbPaletteModal').classList.remove('open')" style="background:none; border:none; cursor:pointer; font-size:0.9rem; color:#64748b;">✕</button>
+            </div>
+            <div class="ggb-palette-row">
+              <span class="ggb-palette-label">Color de x(t):</span>
+              <div class="ggb-color-picker-group">
+                <div class="color-swatch color-swatch-x active" style="background:#0284c7;" data-color="#0284c7"></div>
+                <div class="color-swatch color-swatch-x" style="background:#6366f1;" data-color="#6366f1"></div>
+                <div class="color-swatch color-swatch-x" style="background:#ec4899;" data-color="#ec4899"></div>
+              </div>
+            </div>
+            <div class="ggb-palette-row">
+              <span class="ggb-palette-label">Grosor de Línea:</span>
+              <input type="range" id="ggbStrokeWidth" min="1" max="5" step="0.5" value="2.5" class="input-slider">
+            </div>
+            <div class="ggb-palette-row">
+              <span class="ggb-palette-label">Estilo de Trazo:</span>
+              <select id="ggbLineStyle" style="width:100%; padding:4px; border:1px solid #cbd5e1; border-radius:4px; font-size:0.75rem;">
+                <option value="solid">Línea Continua</option>
+                <option value="dashed">Línea Segmentada</option>
+                <option value="dotted">Línea Punteada</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="mas-controls-panel">
+          <div class="slider-group">
+            <div class="slider-header"><span>Amplitud (A):</span><span id="ggbValA" class="slider-value">2.0 m</span></div>
+            <input type="range" id="ggbSliderA" min="0.2" max="4.0" step="0.1" value="2.0" class="input-slider">
+          </div>
+          <div class="slider-group">
+            <div class="slider-header"><span>Frecuencia (ω):</span><span id="ggbValW" class="slider-value">1.5 rad/s</span></div>
+            <input type="range" id="ggbSliderW" min="0.2" max="6.0" step="0.1" value="1.5" class="input-slider">
+          </div>
+          <div class="slider-group">
+            <div class="slider-header"><span>Fase Inicial (φ):</span><span id="ggbValPhi" class="slider-value">0.00 rad</span></div>
+            <input type="range" id="ggbSliderPhi" min="-3.14" max="3.14" step="0.1" value="0.0" class="input-slider">
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:8px 12px; font-size:0.78rem; color:#334155;">
+        <i class="fa-solid fa-arrows-up-down-left-right" style="color:#0284c7;"></i> <strong>Reescalado independiente:</strong> Arrastra directamente sobre los ejes X o Y para estirar/comprimir la escala de cada eje de forma autónoma.
+      </div>
+
+      <footer class="notebook-footer">
+        <span>Física III • UTP</span>
+        <span class="footer-author-text"><i class="fa-solid fa-feather"></i> Realizado por: David Ramirez, Steven Vélez, Sergio Velásquez</span>
+      </footer>
+    </section>
+
+    <!-- ====================================================================
+     PÁGINA 8: LABORATORIO VIRTUAL DE SIMULACIONES FÍSICAS (Página Izquierda)
+     ==================================================================== -->
+<section class="notebook-page" data-page="8">
+  <div class="page-header">
+    <span class="page-header-topic">Simulaciones Físicas • Nivel Premium</span>
+    <span class="page-number-tag">Página 8</span>
+  </div>
+
+  <h2 class="page-title">Oscilador Masa-Resorte</h2>
+  <p class="page-lead">Modelación interactiva a 60 FPS con vectores en tiempo real y conservación de energía mecánica.</p>
+
+  <!-- Simulación 1: Masa-Resorte -->
+  <div class="sim-card" style="flex:1; display:flex; flex-direction:column; height: 85%;">
+    <div class="sim-card-header">
+      <h3><i class="fa-solid fa-arrows-left-right" style="color:#0284c7;"></i> Oscilador Masa-Resorte</h3>
+      <div style="display:flex; gap:6px; align-items:center;">
+        <button id="btnSimPlay" class="ggb-btn" style="width:auto; padding:0 8px; font-size:0.78rem;"><i class="fa-solid fa-pause"></i></button>
+        <button id="btnSimReset" class="ggb-btn" title="Reiniciar"><i class="fa-solid fa-rotate-left"></i></button>
+        <button id="btnOpenSimModal" class="btn-open-modal-card" title="Ampliar Simulador en Ventana Modal Grande">
+          <i class="fa-solid fa-up-right-and-down-left-from-center"></i> <span>Ampliar</span>
+        </button>
+      </div>
+    </div>
+    <div class="sim-canvas-container" style="flex:1; min-height:450px;">
+      <canvas id="simMassSpringCanvas" class="sim-canvas" style="width: 100%; height: 100%;"></canvas>
+    </div>
+    <div class="sim-sliders-grid" style="margin-top:15px;">
+      <div class="slider-group">
+        <div class="slider-header"><small>Masa (m):</small><span id="simValM" class="slider-value">1.0 kg</span></div>
+        <input type="range" id="simSliderM" min="0.2" max="4.0" step="0.1" value="1.0" class="input-slider">
+      </div>
+      <div class="slider-group">
+        <div class="slider-header"><small>Constante (k):</small><span id="simValK" class="slider-value">25 N/m</span></div>
+        <input type="range" id="simSliderK" min="5" max="80" step="1" value="25" class="input-slider">
+      </div>
+      <div class="slider-group">
+        <div class="slider-header"><small>Amplitud (A):</small><span id="simValA" class="slider-value">1.8 m</span></div>
+        <input type="range" id="simSliderA" min="0.4" max="2.5" step="0.1" value="1.8" class="input-slider">
+      </div>
+    </div>
+  </div>
+
+  <footer class="notebook-footer" style="margin-top:auto;">
+    <span>Física III • UTP</span>
+    <span class="footer-author-text"><i class="fa-solid fa-feather"></i> Realizado por: David Ramirez, Steven Vélez, Sergio Velásquez</span>
+  </footer>
+</section>
+
+<!-- ====================================================================
+     PÁGINA 9: FASOR ROTATORIO Y ONDA (Página Derecha)
+     ==================================================================== -->
+<section class="notebook-page" data-page="9">
+  <div class="page-header">
+    <span class="page-header-topic">Fasores y Ondas • Nivel Premium</span>
+    <span class="page-number-tag">Página 9</span>
+  </div>
+
+  <h2 class="page-title">Fasor Rotatorio y Onda Proyectada</h2>
+  <p class="page-lead">Visualización interactiva del movimiento circular uniforme y su proyección M.A.S.</p>
+
+  <!-- Simulación 2: Fasor Rotatorio -->
+  <div class="sim-card" style="flex:1; display:flex; flex-direction:column; height: 85%;">
+    <div class="sim-card-header">
+      <h3><i class="fa-solid fa-circle-notch" style="color:#6366f1;"></i> M.C.U. ↔ M.A.S.</h3>
+      <div style="display:flex; gap:6px; align-items:center;">
+        <button id="btnOpenPhasorModal" class="btn-open-modal-card" title="Ampliar Fasor en Ventana Modal Grande">
+          <i class="fa-solid fa-up-right-and-down-left-from-center"></i> <span>Ampliar</span>
+        </button>
+      </div>
+    </div>
+    <div class="sim-canvas-container" style="flex:1; min-height:480px;">
+      <canvas id="simPhasorCanvas" class="sim-canvas" style="width: 100%; height: 100%;"></canvas>
+    </div>
+  </div>
+
+  <footer class="notebook-footer" style="margin-top:auto;">
+    <span>Física III • UTP</span>
+    <span class="footer-author-text"><i class="fa-solid fa-feather"></i> Realizado por: David Ramirez, Steven Vélez, Sergio Velásquez</span>
+  </footer>
+</section>
+
+<!-- ====================================================================
+         PÁGINA 10: PROBLEMAS Y EJERCICIOS RESUELTOS (Página Derecha)
+         ==================================================================== -->
+    <section class="notebook-page" data-page="10">
+      <div class="page-header">
+        <span class="page-header-topic">Metodología Didáctica • 5 Fases Estrictas</span>
+        <span class="page-number-tag">Página 10</span>
+      </div>
+
+      <h2 class="page-title">Problemas Resueltos Paso a Paso</h2>
+      <p class="page-lead">Código cromático normativo: Datos (Azul), Incógnitas (Rojo), Despeje (Naranja).</p>
+
+      <div class="exercise-card">
+        <div class="exercise-title">
+          <i class="fa-solid fa-bookmark" style="color:#2563eb;"></i>
+          Problema Modelo: Oscilador Masa-Resorte
+        </div>
+
+        <div class="exercise-statement">
+          <strong>Enunciado:</strong> Un bloque de masa <span class="data-tag-blue">m = 0.50 kg</span> descansa sobre una mesa sin fricción unido a un resorte con <span class="data-tag-blue">k = 200 N/m</span>. Se desplaza <span class="data-tag-blue">x = 0.12 m</span> y se suelta del reposo en <span class="data-tag-blue">t = 0 s</span>. Determine $\omega$, $T$, $v_{\max}$, $a_{\max}$ y $E_m$.
+        </div>
+
+        <!-- Fases 1 y 2 Adaptativas -->
+        <div class="exercise-phases-grid">
+          <div class="phase-box phase-datos" style="margin-bottom:0;">
+            <div class="phase-header-datos"><i class="fa-solid fa-circle-info"></i> 1) Datos (Azul):</div>
+            <div>
+              • <span class="data-tag-blue">m = 0.50 kg</span><br>
+              • <span class="data-tag-blue">k = 200 N/m</span><br>
+              • <span class="data-tag-blue">A = 0.12 m</span><br>
+              • <span class="data-tag-blue">φ = 0 rad</span>
+            </div>
+          </div>
+
+          <div class="phase-box phase-incognitas" style="margin-bottom:0;">
+            <div class="phase-header-incognitas"><i class="fa-solid fa-circle-question"></i> 2) Incógnitas (Rojo):</div>
+            <div>
+              • <span class="unknown-tag-red">ω = ? [rad/s]</span><br>
+              • <span class="unknown-tag-red">T = ? [s]</span><br>
+              • <span class="unknown-tag-red">v_max = ? [m/s]</span><br>
+              • <span class="unknown-tag-red">E_m = ? [J]</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-box phase-formulas">
+          <div class="phase-header-formulas"><i class="fa-solid fa-square-root-variable"></i> 3) Fórmulas Físicas:</div>
+          <div style="font-size:0.84rem; line-height:1.5;">
+            $$ \omega = \sqrt{\frac{k}{m}}, \quad T = \frac{2\pi}{\omega}, \quad v_{\max} = \omega A, \quad a_{\max} = \omega^2 A, \quad E_m = \frac{1}{2} k A^2 $$
+          </div>
+        </div>
+
+        <div class="phase-box phase-despeje">
+          <div class="phase-header-despeje"><i class="fa-solid fa-calculator"></i> 4) Sustitución y Despeje (Valores en Naranja):</div>
+          <div class="despeje-container" style="font-size:0.84rem; line-height:1.6;">
+            <div class="despeje-row">
+              $$ \omega = \sqrt{\frac{200}{0.50}} \implies $$
+              <span class="solved-tag-orange">ω = 20.00 rad/s</span>
+            </div>
+            <div class="despeje-row">
+              $$ T = \frac{2\pi}{20.00} \implies $$
+              <span class="solved-tag-orange">T = 0.314 s</span>
+            </div>
+            <div class="despeje-row">
+              $$ v_{\max} = (20.00)(0.12) \implies $$
+              <span class="solved-tag-orange">v_max = 2.40 m/s</span>
+            </div>
+            <div class="despeje-row">
+              $$ a_{\max} = (20.00)^2 (0.12) \implies $$
+              <span class="solved-tag-orange">a_max = 48.00 m/s²</span>
+            </div>
+            <div class="despeje-row">
+              $$ E_m = \frac{1}{2}(200)(0.12)^2 \implies $$
+              <span class="solved-tag-orange">E_m = 1.44 J</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-box phase-validation">
+          <div class="phase-header-validation"><i class="fa-solid fa-square-check"></i> 5) Validación y Conclusiones:</div>
+          <div style="font-size:0.8rem; color:#14532d; line-height:1.45;">
+            <strong>• Comprobación Cruzada:</strong> $E_k^{\max} = \frac{1}{2}m v_{\max}^2 = \frac{1}{2}(0.50)(2.40)^2 = 1.44 \text{ J}$, verificando de forma exacta la conservación de la energía mecánica total.
+          </div>
+        </div>
+      </div>
+
+      <footer class="notebook-footer">
+        <span>Física III • UTP</span>
+        <span class="footer-author-text"><i class="fa-solid fa-feather"></i> Realizado por: David Ramirez, Steven Vélez, Sergio Velásquez</span>
+      </footer>
+    </section>
+
+    <!-- ====================================================================
+         PÁGINA 11: TALLER INTERACTIVO DE EJERCICIOS (Página Izquierda)
+         ==================================================================== -->
+    <section class="notebook-page" data-page="11">
+      <div class="page-header">
+        <span class="page-header-topic">Taller Práctico • Generador Paso a Paso</span>
+        <span class="page-number-tag">Página 11</span>
+      </div>
+
+      <h2 class="page-title">Taller Interactivo de Problemas</h2>
+      <p class="page-lead">Introduce los parámetros de tu problema. El motor didáctico formulará la solución completa aplicando las 5 fases obligatorias.</p>
+
+      <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:8px; padding:12px; margin-bottom:12px;">
+        <h3 style="color:#0f172a; font-size:0.92rem; margin-bottom:8px;">
+          <i class="fa-solid fa-sliders" style="color:#0284c7;"></i> Parámetros de Entrada
+        </h3>
+        <!-- Columnas Adaptativas para Parámetros -->
+        <div class="phase-calc-grid">
+          <div>
+            <label style="font-size:0.72rem; font-weight:600; color:#334155; display:block; margin-bottom:2px;">Masa m [kg]:</label>
+            <input type="number" id="inputM" value="0.80" step="0.05" min="0.01" style="width:100%; padding:5px 8px; border:1px solid #cbd5e1; border-radius:5px; font-family:'JetBrains Mono'; font-size:0.82rem;">
+          </div>
+          <div>
+            <label style="font-size:0.72rem; font-weight:600; color:#334155; display:block; margin-bottom:2px;">Constante k [N/m]:</label>
+            <input type="number" id="inputK" value="50.0" step="1.0" min="0.1" style="width:100%; padding:5px 8px; border:1px solid #cbd5e1; border-radius:5px; font-family:'JetBrains Mono'; font-size:0.82rem;">
+          </div>
+          <div>
+            <label style="font-size:0.72rem; font-weight:600; color:#334155; display:block; margin-bottom:2px;">Amplitud A [m]:</label>
+            <input type="number" id="inputA" value="0.15" step="0.01" min="0.001" style="width:100%; padding:5px 8px; border:1px solid #cbd5e1; border-radius:5px; font-family:'JetBrains Mono'; font-size:0.82rem;">
+          </div>
+          <div>
+            <label style="font-size:0.72rem; font-weight:600; color:#334155; display:block; margin-bottom:2px;">Fase φ [rad]:</label>
+            <input type="number" id="inputPhi" value="0.00" step="0.1" style="width:100%; padding:5px 8px; border:1px solid #cbd5e1; border-radius:5px; font-family:'JetBrains Mono'; font-size:0.82rem;">
+          </div>
+        </div>
+
+        <button id="btnSolveCustom" class="btn-open-book" style="font-size:0.82rem; padding:7px 16px; border-radius:6px;">
+          <i class="fa-solid fa-gears"></i> Generar Resolución en 5 Fases
+        </button>
+      </div>
+
+      <div id="customSolutionContainer">
+        <p style="text-align:center; color:#64748b; padding:16px; font-style:italic; font-size:0.82rem;">
+          Haz clic en el botón superior para generar la deducción matemática en las 5 fases normalizadas.
+        </p>
+      </div>
+
+      <footer class="notebook-footer">
+        <span>Física III • UTP</span>
+        <span class="footer-author-text"><i class="fa-solid fa-feather"></i> Realizado por: David Ramirez, Steven Vélez, Sergio Velásquez</span>
+      </footer>
+    </section>
+
+    <!-- ====================================================================
+         PÁGINA 12: GLOSARIO DE TÉRMINOS CIENTÍFICOS (Página Derecha)
+         ==================================================================== -->
+    <section class="notebook-page" data-page="12">
+      <div class="page-header">
+        <span class="page-header-topic">Aparato Crítico • Fichero Enciclopédico</span>
+        <span class="page-number-tag">Página 12</span>
+      </div>
+
+      <h2 class="page-title">Glosario de Conceptos Físicos</h2>
+      <p class="page-lead">Términos técnicos y formalismo de oscilaciones con buscador en vivo.</p>
+
+      <div class="glossary-search-bar">
+        <input type="text" id="glossarySearch" class="glossary-input" placeholder="🔍 Buscar en el glosario (ej: fasor, amortiguamiento, periodo)...">
+      </div>
+
+      <div class="glossary-grid">
+        <div class="glossary-card">
+          <h4 class="glossary-term">Amplitud ($A$)</h4>
+          <p class="glossary-def">Máxima separación respecto a la posición de equilibrio estable en metros ($\text{m}$).</p>
+        </div>
+        <div class="glossary-card">
+          <h4 class="glossary-term">Ciclo</h4>
+          <p class="glossary-def">Trayecto completo de ida y vuelta que realiza el cuerpo oscilante.</p>
+        </div>
+        <div class="glossary-card">
+          <h4 class="glossary-term">Constante Elástica ($k$)</h4>
+          <p class="glossary-def">Rigidez del resorte; fuerza recuperadora producida por deformación unitaria ($\text{N/m}$).</p>
+        </div>
+        <div class="glossary-card">
+          <h4 class="glossary-term">Desfasaje ($\Delta\phi$)</h4>
+          <p class="glossary-def">Diferencia angular entre las fases de dos magnitudes del oscilador.</p>
+        </div>
+        <div class="glossary-card">
+          <h4 class="glossary-term">Elongación ($x$)</h4>
+          <p class="glossary-def">Posición instantánea del oscilador medida desde el punto de equilibrio.</p>
+        </div>
+        <div class="glossary-card">
+          <h4 class="glossary-term">Energía Mecánica ($E_m$)</h4>
+          <p class="glossary-def">Suma constante de energía cinética y elástica: $E_m = \frac{1}{2}kA^2$.</p>
+        </div>
+        <div class="glossary-card">
+          <h4 class="glossary-term">Fasor</h4>
+          <p class="glossary-def">Vector rotatorio cuya proyección describe el movimiento armónico simple.</p>
+        </div>
+        <div class="glossary-card">
+          <h4 class="glossary-term">Frecuencia ($f$)</h4>
+          <p class="glossary-def">Oscilaciones por segundo medidas en Hertz ($\text{Hz} = 1/\text{s}$).</p>
+        </div>
+        <div class="glossary-card">
+          <h4 class="glossary-term">Frecuencia Angular ($\omega$)</h4>
+          <p class="glossary-def">Velocidad angular de fase en radianes por segundo ($\omega = \sqrt{k/m}$).</p>
+        </div>
+        <div class="glossary-card">
+          <h4 class="glossary-term">Isocronismo</h4>
+          <p class="glossary-def">Independencia del periodo respecto a la amplitud de oscilación.</p>
+        </div>
+        <div class="glossary-card">
+          <h4 class="glossary-term">Ley de Hooke</h4>
+          <p class="glossary-def">Fuerza restauradora proporcional a la deformación: $\vec{F}_e = -k\vec{x}$.</p>
+        </div>
+        <div class="glossary-card">
+          <h4 class="glossary-term">Periodo ($T$)</h4>
+          <p class="glossary-def">Tiempo necesario para completar un ciclo completo en segundos ($\text{s}$).</p>
+        </div>
+      </div>
+
+      <footer class="notebook-footer">
+        <span>Física III • UTP</span>
+        <span class="footer-author-text"><i class="fa-solid fa-feather"></i> Realizado por: David Ramirez, Steven Vélez, Sergio Velásquez</span>
+      </footer>
+    </section>
+
+    <!-- ====================================================================
+         PÁGINA 13: REFERENCIAS BIBLIOGRÁFICAS (Página Izquierda)
+         ==================================================================== -->
+    <section class="notebook-page" data-page="13">
+      <div class="page-header">
+        <span class="page-header-topic">Aparato Crítico • Fuentes Académicas</span>
+        <span class="page-number-tag">Página 13</span>
+      </div>
+
+      <h2 class="page-title">Referencias Bibliográficas (APA 7)</h2>
+      <p class="page-lead">Tratados y manuales canónicos de física universitaria normalizados bajo normas APA 7.ª edición.</p>
+
+      <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:8px; padding:16px 20px; margin-top:10px; box-shadow:0 2px 10px rgba(0,0,0,0.03);">
+        <div class="apa-reference-item">
+          Feynman, R. P., Leighton, R. B., & Sands, M. (1963). <i>The Feynman lectures on physics</i> (Vol. 1: Mainly mechanics, radiation, and heat). Addison-Wesley.
+        </div>
+        <div class="apa-reference-item">
+          French, A. P. (1971). <i>Vibrations and waves</i> (M.I.T. Introductory Physics Series). W. W. Norton & Company.
+        </div>
+        <div class="apa-reference-item">
+          Halliday, D., Resnick, R., & Walker, J. (2018). <i>Fundamentos de física</i> (10.ª ed., Vol. 1). Grupo Editorial Patria.
+        </div>
+        <div class="apa-reference-item">
+          Marion, J. B., & Thornton, S. T. (2004). <i>Classical dynamics of particles and systems</i> (5.ª ed.). Brooks/Cole, Cengage Learning.
+        </div>
+        <div class="apa-reference-item">
+          Sears, F. W., Zemansky, M. W., Young, H. D., & Freedman, R. A. (2018). <i>Física universitaria con física moderna</i> (14.ª ed., Vol. 1). Pearson Educación.
+        </div>
+        <div class="apa-reference-item">
+          Serway, R. A., & Jewett, J. W. (2018). <i>Física para ciencias e ingeniería</i> (10.ª ed., Vol. 1). Cengage Learning.
+        </div>
+        <div class="apa-reference-item">
+          Tipler, P. A., & Mosca, G. (2021). <i>Física para la ciencia y la tecnología: Mecánica, oscilaciones y ondas, termodinámica</i> (6.ª ed., Vol. 1). Editorial Reverté.
+        </div>
+      </div>
+
+      <footer class="notebook-footer">
+        <span>Física III • UTP</span>
+        <span class="footer-author-text"><i class="fa-solid fa-feather"></i> Realizado por: David Ramirez, Steven Vélez, Sergio Velásquez</span>
+      </footer>
+    </section>
+
+    <!-- ====================================================================
+         PÁGINA 13: COLOFÓN Y CONTRAPORTADA ACADÉMICA (Página Derecha)
+         ==================================================================== -->
+    <section class="notebook-page page-backcover" data-page="14">
+      <div class="page-header">
+        <span class="page-header-topic">Colofón Editorial & Cierre</span>
+        <span class="page-number-tag">Página 14</span>
+      </div>
+
+      <h2 class="page-title">Contraportada y Créditos Académicos</h2>
+      <p class="page-lead">Registro de cátedra y culminación del módulo interactivo de oscilaciones mecánicas.</p>
+
+      <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:20px; text-align:center; box-shadow:0 4px 16px rgba(0,0,0,0.04); margin-bottom:16px;">
+        <div style="width:56px; height:56px; margin:0 auto 10px auto; background:linear-gradient(135deg, #1e3a8a, #0284c7); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:1.6rem; box-shadow:0 4px 14px rgba(2,132,199,0.4);">
+          <i class="fa-solid fa-award"></i>
+        </div>
+        <h3 style="color:#0f172a; font-size:1.15rem; font-weight:800; margin-bottom:4px;">FÍSICA III: ONDAS Y OSCILACIONES</h3>
+        <p style="color:#0284c7; font-weight:600; font-size:0.85rem; margin-bottom:10px;">Cuaderno Digital Científico e Interactivo</p>
+        <p style="color:#475569; font-size:0.82rem; line-height:1.55; max-width:480px; margin:0 auto 14px auto;">
+          Este cuaderno interactivo integra rigor conceptual, demostraciones analíticas formales paso a paso, representaciones gráficas dinámicas estilo GeoGebra y simuladores físicos en tiempo real.
+        </p>
+
+        <div style="display:inline-block; text-align:left; background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:14px 20px; font-size:0.82rem; color:#1e293b; line-height:1.6; box-shadow:0 3px 12px rgba(0,0,0,0.05); max-width:440px; width:100%;">
+          <div style="font-weight:700; color:#0284c7; margin-bottom:6px; font-size:0.88rem; display:flex; align-items:center; gap:6px;">
+            <i class="fa-solid fa-users"></i> Autores del Proyecto:
+          </div>
+          <ul style="list-style:none; padding-left:2px; margin-bottom:10px;">
+            <li style="margin-bottom:3px;"><i class="fa-solid fa-user-graduate" style="color:#3b82f6; font-size:0.78rem; margin-right:6px;"></i><strong>David Alejandro Ramirez Bolaños</strong></li>
+            <li style="margin-bottom:3px;"><i class="fa-solid fa-user-graduate" style="color:#3b82f6; font-size:0.78rem; margin-right:6px;"></i><strong>Steven Vélez Garces</strong></li>
+            <li style="margin-bottom:3px;"><i class="fa-solid fa-user-graduate" style="color:#3b82f6; font-size:0.78rem; margin-right:6px;"></i><strong>Sergio Andrés Velásquez Arana</strong></li>
+          </ul>
+          <div style="border-top:1px solid #e2e8f0; padding-top:8px; font-size:0.76rem; color:#475569; line-height:1.5;">
+            <strong>• Institución:</strong> Universidad Tecnológica de Pereira (UTP)<br>
+            <strong>• Asignatura:</strong> Física III (Ondas y Oscilaciones)<br>
+            <strong>• Formato:</strong> Cuaderno Digital Multiplataforma (PWA)<br>
+            <strong>• Edición:</strong> 2026 • Versión 2.5
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <button id="btnBackToCover" class="btn-open-book" style="font-size:0.85rem; padding:8px 20px;">
+          <i class="fa-solid fa-book"></i> Volver a la Portada Principal
+        </button>
+      </div>
+
+      <footer class="notebook-footer">
+        <span>Física III • UTP</span>
+        <span class="footer-author-text"><i class="fa-solid fa-feather"></i> Realizado por: David Ramirez, Steven Vélez, Sergio Velásquez</span>
+      </footer>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       PANEL DE NAVEGACIÓN FLOTANTE INFERIOR (PERSISTENTE)
+       ==================================================================== -->
+  <nav class="bottom-nav-dock" aria-label="Navegación del Cuaderno">
+    <button id="btnHome" class="nav-btn" title="Portada / Inicio">
+      <i class="fa-solid fa-house"></i>
+    </button>
+    <button id="btnPrevPage" class="nav-btn" title="Páginas Anteriores (←)">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    
+    <div class="nav-counter">
+      <select id="pageSelect" class="page-select-dropdown" aria-label="Ir a sección">
+        <!-- Opciones dinámicas -->
+      </select>
+      <span id="pageCounterText" style="font-family:'JetBrains Mono'; font-size:0.82rem; color:#94a3b8; white-space:nowrap;">Págs. 1 / 14</span>
+    </div>
+
+    <button id="btnNextPage" class="nav-btn" title="Páginas Siguientes (→)">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+    <button id="btnToggleSound" class="nav-extra-btn" title="Sonido de Paso de Página">
+      <i class="fa-solid fa-volume-high"></i>
+    </button>
+    <button id="btnFullscreen" class="nav-extra-btn" title="Pantalla Completa">
+      <i class="fa-solid fa-expand"></i>
+    </button>
+  </nav>
+
+</div>
+
+<!-- ====================================================================
+     VENTANA MODAL COLAPSABLE GRANDE PARA GRÁFICAS INTERACTIVAS
+     ==================================================================== -->
+<div id="graphicModal" class="graphic-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalGraphicTitle">
+  <div class="graphic-modal-dialog" id="modalDialog">
+    <!-- Encabezado del Modal con Botones de Colapsar y Cerrar -->
+    <header class="graphic-modal-header" id="modalHeader">
+      <div class="graphic-modal-title">
+        <span id="modalIcon"><i class="fa-solid fa-chart-line" style="color:#38bdf8;"></i></span>
+        <span id="modalGraphicTitle">Laboratorio Gráfico Interactivo</span>
+        <span class="modal-badge-mode" id="modalBadgeMode">VENTANA EXPANDIDA</span>
+      </div>
+      <div class="graphic-modal-btn-group">
+        <button id="btnModalCollapse" class="modal-hdr-btn" title="Colapsar / Restaurar ventana modal" aria-label="Colapsar modal">
+          <i class="fa-solid fa-window-minimize" id="btnModalCollapseIcon"></i>
+        </button>
+        <button id="btnModalClose" class="modal-hdr-btn modal-close-btn" title="Cerrar modal (Esc)" aria-label="Cerrar modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Cuerpo del Modal: Vistas Especializadas -->
+    <main class="graphic-modal-body" id="modalBody">
+      <!-- 1. Vista GeoGebra Modal -->
+      <div id="modalViewGeoGebra" class="modal-view-panel" style="display:none;">
+        <div class="geogebra-toolbar" style="padding:10px 16px; background:#f8fafc; border-bottom:1px solid #e2e8f0;">
+          <div class="ggb-toolgroup">
+            <button id="modalGgbToolPan" class="ggb-btn ggb-btn-tool active" title="Arrastrar Lienzo (Mover)"><i class="fa-solid fa-hand"></i></button>
+            <button id="modalGgbToolSelect" class="ggb-btn ggb-btn-tool" title="Inspeccionar Coordenadas"><i class="fa-solid fa-arrow-pointer"></i></button>
+            <button id="modalGgbZoomIn" class="ggb-btn" title="Zoom In"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+            <button id="modalGgbZoomOut" class="ggb-btn" title="Zoom Out"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+            <button id="modalGgbResetView" class="ggb-btn" title="Restablecer Vista"><i class="fa-solid fa-house"></i></button>
+          </div>
+          <div class="ggb-toolgroup" style="gap: 12px; font-size: 0.8rem; font-weight: 600;">
+            <label style="display:flex; align-items:center; gap:4px; color:#0284c7; cursor:pointer;"><input type="checkbox" id="modalChkCurveX" checked> x(t)</label>
+            <label style="display:flex; align-items:center; gap:4px; color:#10b981; cursor:pointer;"><input type="checkbox" id="modalChkCurveV" checked> v(t)</label>
+            <label style="display:flex; align-items:center; gap:4px; color:#f59e0b; cursor:pointer;"><input type="checkbox" id="modalChkCurveA" checked> a(t)</label>
+          </div>
+          <div class="ggb-toolgroup">
+            <button id="modalGgbBtnPalette" class="ggb-btn" title="Paleta de Estilos"><i class="fa-solid fa-palette" style="color:#2563eb;"></i></button>
+          </div>
+        </div>
+
+        <div class="geogebra-canvas-wrapper" style="flex:1; min-height:460px; position:relative; background:#ffffff;">
+          <canvas id="modalGgbCanvas"></canvas>
+          <div id="modalGgbCoordsBadge" class="ggb-coords-badge">t: 0.00s | f(t): 0.00</div>
+
+          <div id="modalGgbPaletteModal" class="ggb-palette-modal">
+            <div class="ggb-palette-header">
+              <span><i class="fa-solid fa-paintbrush"></i> Paleta de Estilos</span>
+              <button id="btnCloseModalPalette" style="background:none; border:none; cursor:pointer; font-size:0.9rem; color:#64748b;">✕</button>
+            </div>
+            <div class="ggb-palette-row">
+              <span class="ggb-palette-label">Color de x(t):</span>
+              <div class="ggb-color-picker-group">
+                <div class="color-swatch modal-color-swatch-x active" style="background:#0284c7;" data-color="#0284c7"></div>
+                <div class="color-swatch modal-color-swatch-x" style="background:#6366f1;" data-color="#6366f1"></div>
+                <div class="color-swatch modal-color-swatch-x" style="background:#ec4899;" data-color="#ec4899"></div>
+              </div>
+            </div>
+            <div class="ggb-palette-row">
+              <span class="ggb-palette-label">Grosor de Línea:</span>
+              <input type="range" id="modalGgbStrokeWidth" min="1" max="6" step="0.5" value="2.5" class="input-slider">
+            </div>
+            <div class="ggb-palette-row">
+              <span class="ggb-palette-label">Estilo de Trazo:</span>
+              <select id="modalGgbLineStyle" style="width:100%; padding:4px; border:1px solid #cbd5e1; border-radius:4px; font-size:0.75rem;">
+                <option value="solid">Línea Continua</option>
+                <option value="dashed">Línea Segmentada</option>
+                <option value="dotted">Línea Punteada</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="mas-controls-panel" style="padding:12px 20px; background:#f8fafc;">
+          <div class="slider-group">
+            <div class="slider-header"><span>Amplitud (A):</span><span id="modalGgbValA" class="slider-value">2.0 m</span></div>
+            <input type="range" id="modalGgbSliderA" min="0.2" max="4.0" step="0.1" value="2.0" class="input-slider">
+          </div>
+          <div class="slider-group">
+            <div class="slider-header"><span>Frecuencia (ω):</span><span id="modalGgbValW" class="slider-value">1.5 rad/s</span></div>
+            <input type="range" id="modalGgbSliderW" min="0.2" max="6.0" step="0.1" value="1.5" class="input-slider">
+          </div>
+          <div class="slider-group">
+            <div class="slider-header"><span>Fase Inicial (φ):</span><span id="modalGgbValPhi" class="slider-value">0.00 rad</span></div>
+            <input type="range" id="modalGgbSliderPhi" min="-3.14" max="3.14" step="0.1" value="0.0" class="input-slider">
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Vista Simulador Masa-Resorte Modal -->
+      <div id="modalViewSim" class="modal-view-panel" style="display:none;">
+        <div class="sim-card-header" style="background:#f8fafc; border-bottom:1px solid #e2e8f0; padding:12px 20px;">
+          <h3><i class="fa-solid fa-arrows-left-right" style="color:#0284c7;"></i> Simulación Masa-Resorte (Vista Ampliada y Análisis Dinámico)</h3>
+          <div style="display:flex; gap:8px;">
+            <button id="modalBtnSimPlay" class="ggb-btn" style="width:auto; padding:0 12px; font-size:0.82rem;"><i class="fa-solid fa-pause"></i> Pausar</button>
+            <button id="modalBtnSimReset" class="ggb-btn" title="Reiniciar Simulación"><i class="fa-solid fa-rotate-left"></i></button>
+          </div>
+        </div>
+        <div class="sim-canvas-container" style="flex:1; min-height:420px; position:relative; background:#ffffff;">
+          <canvas id="modalSimMassSpringCanvas" class="sim-canvas"></canvas>
+        </div>
+        <div class="modal-sim-sliders-grid">
+          <div class="slider-group">
+            <div class="slider-header"><small>Masa (m):</small><span id="modalSimValM" class="slider-value">1.0 kg</span></div>
+            <input type="range" id="modalSimSliderM" min="0.2" max="4.0" step="0.1" value="1.0" class="input-slider">
+          </div>
+          <div class="slider-group">
+            <div class="slider-header"><small>Constante (k):</small><span id="modalSimValK" class="slider-value">25 N/m</span></div>
+            <input type="range" id="modalSimSliderK" min="5" max="80" step="1" value="25" class="input-slider">
+          </div>
+          <div class="slider-group">
+            <div class="slider-header"><small>Amplitud (A):</small><span id="modalSimValA" class="slider-value">1.8 m</span></div>
+            <input type="range" id="modalSimSliderA" min="0.4" max="2.5" step="0.1" value="1.8" class="input-slider">
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Vista Fasor Rotatorio Modal -->
+      <div id="modalViewPhasor" class="modal-view-panel" style="display:none;">
+        <div class="sim-card-header" style="background:#f8fafc; border-bottom:1px solid #e2e8f0; padding:12px 20px;">
+          <h3><i class="fa-solid fa-circle-notch" style="color:#6366f1;"></i> Fasor Rotatorio y Onda Sinusoidal Proyectada</h3>
+          <span class="ggb-badge">M.C.U. ↔ M.A.S. (Vista Panorámica)</span>
+        </div>
+        <div class="sim-canvas-container" style="flex:1; min-height:460px; position:relative; background:#ffffff;">
+          <canvas id="modalSimPhasorCanvas" class="sim-canvas"></canvas>
+        </div>
+      </div>
+
+      <!-- 4. Vista Mapa Mental Modal -->
+      <div id="modalViewMindmap" class="modal-view-panel" style="display:none;">
+        <div class="mindmap-wrapper" id="modalMindmapContainer" style="flex:1; min-height:540px; position:relative;">
+        </div>
+      </div>
+    </main>
+
+    <!-- Pie del Modal -->
+    <footer class="graphic-modal-footer">
+      <div>
+        <i class="fa-solid fa-circle-info" style="color:#0284c7;"></i> Usa el botón <i class="fa-solid fa-window-minimize" style="color:#0284c7;"></i> para <strong>colapsar</strong> la ventana a la esquina inferior y continuar leyendo el cuaderno sin cerrarla.
+      </div>
+      <button id="btnModalCloseFooter" class="btn-header" style="background:#e2e8f0; color:#0f172a; border:1px solid #cbd5e1; padding:5px 14px; font-size:0.78rem;">
+        <i class="fa-solid fa-xmark"></i> Cerrar Ventana
+      </button>
+    </footer>
+  </div>
+</div>
+
+<!-- Modal Especializado para Visualización Histórica en Alta Definición -->
+<div id="historicalImageModal" class="hist-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="histModalTitleText">
+  <div class="hist-modal-dialog">
+    <header class="hist-modal-header">
+      <div class="hist-modal-title">
+        <i class="fa-solid fa-landmark" style="color:#38bdf8;"></i>
+        <span id="histModalTitleText">Detalle Histórico</span>
+      </div>
+      <button class="hist-modal-close" onclick="closeHistoricalModal()" title="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+    </header>
+    <div class="hist-modal-body">
+      <div class="hist-modal-image-wrapper">
+        <img id="histModalImg" src="" alt="" class="hist-modal-img">
+      </div>
+      <p id="histModalDesc" class="hist-modal-desc"></p>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts de la Aplicación (con versionado anti-caché) -->
+<script src="js/audio.js?v=10"></script>
+<script src="js/geogebra_canvas.js?v=10"></script>
+<script src="js/simulators.js?v=10"></script>
+<script src="js/mindmap.js?v=10"></script>
+<script src="js/exercises.js?v=10"></script>
+<script src="js/app.js?v=10"></script>
+<script>
+  // Limpieza automática de Service Worker y cachés para garantizar carga inmediata en localhost
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(registrations => {
+      for (let reg of registrations) {
+        reg.unregister();
+      }
+    });
+  }
+  if ('caches' in window) {
+    caches.keys().then(names => {
+      for (let name of names) {
+        caches.delete(name);
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
